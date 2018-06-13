@@ -1,0 +1,16 @@
+<h1>Restaurant Menu</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Item</th>
+    <th>Price</th>
+  </tr>
+  {% for it in itens %}
+    <tr>
+      <td>{{ it['id']    }}</td>
+      <td>{{ it['item']  }}</td>
+      <td>{{ it['price'] }}</td>
+    </tr>
+  {% endfor %}
+</table>
