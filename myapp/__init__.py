@@ -1,16 +1,3 @@
-"""
-    Usage:
-
-      - Set environment variables
-
-        export FLASK_APP=myapp
-        export FLASK_ENV=development
-
-      - Outside `myapp` directory execute
-
-        flask init-db
-        flask run
-"""
 import os
 
 from flask import Flask
