@@ -35,3 +35,29 @@ def create():
         db.commit()
         return redirect(url_for('index'))
     return render_template('create.html', form=form)
+
+
+@bp.route('/<int:id>/delete', methods=('POST',))
+def delete(id):
+    db = get_db()
+    db.execute(
+        'DELETE FROM prices WHERE id = ?', (id,)
+    )
+    db.commit()
+    return redirect(url_for('index'))
+
+
+@bp.route('/<int:id>/update', methods=('GET', 'POST'))
+def update(id):
+    form = MyForm()
+    if form.validate_on_submit():
+        item = form.item.data
+        price = float(form.price.raw_data[0])
+        db = get_db()
+        db.execute(
+            'UPDATE prices SET item = ?, price = ?'
+            ' WHERE id = ?', (item, price, id)
+        )
+        db.commit()
+        return redirect(url_for('index'))
+    return render_template('update.html', form=form, id=id)
