@@ -5,13 +5,13 @@ This web application executes the [CRUD](https://en.wikipedia.org/wiki/Create,_r
 ## Connect to the Database
 The connection to the SQLite database is established via [sqlite3.connect()](https://docs.python.org/3/library/sqlite3.html#sqlite3.connect). 
 
-- [myapp/db.py](myapp/db.py)
+- [db.py](myapp/db.py#L10-L13)
 
 ## Data Tables
 
 The database schema is created before before we store or retrieve any data.
 
-- [myapp/schema.sql](myapp/schema.sql)
+- [schema.sql](myapp/schema.sql)
 
 
 ## CRUD Operations
