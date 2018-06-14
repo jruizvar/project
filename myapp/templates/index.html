@@ -8,7 +8,8 @@
   </tr>
   {% for it in itens %}
     <tr>
-      <td>{{ it['id']    }}</td>
+      <td><a href="{{ url_for('.update', id=it['id']) }}">
+	  {{ it['id'] }}</a></td>
       <td>{{ it['item']  }}</td>
       <td>{{ it['price'] }}</td>
     </tr>
