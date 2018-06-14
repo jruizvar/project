@@ -24,7 +24,7 @@ The database schema is created before we store or retrieve any data.
 
 # Instructions
 
-The application was written in **Python 3.6**.
+The application was written in **Python 3.6** with the microframework [Flask](http://flask.pocoo.org).
 
 ### Install Dependencies
 
