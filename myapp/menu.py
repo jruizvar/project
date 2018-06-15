@@ -17,7 +17,9 @@ class MyForm(FlaskForm):
 @bp.route('/')
 def index():
     db = get_db()
-    itens = db.execute('SELECT * FROM prices')
+    itens = db.execute(
+        'SELECT * FROM prices'
+    )
     return render_template('index.html', itens=itens)
 
 
@@ -39,7 +41,13 @@ def create():
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 def update(id):
-    form = MyForm()
+    it = get_db().execute(
+      'SELECT item, price FROM prices'
+      ' WHERE id = ?', (id,)
+    ).fetchone()
+    data = {'item': it['item'],
+            'price': it['price']}
+    form = MyForm(data=data)
     if form.validate_on_submit():
         item = form.item.data
         price = float(form.price.raw_data[0])
