@@ -42,7 +42,7 @@ def create():
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 def update(id):
     it = get_db().execute(
-      'SELECT item, price FROM prices'
+      'SELECT * FROM prices'
       ' WHERE id = ?', (id,)
     ).fetchone()
     data = {'item': it['item'],

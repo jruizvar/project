@@ -1,5 +1,4 @@
 # Project Description
-
 This web application executes the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations on a relational database. The application uses the [SQLite](https://sqlite.org/about.html) library to implement a transactional SQL database engine. SQLite is convenient because it doesn't require setting up a separate database server and it is built-in to **Python**.
 
 ### Connect to the Database
@@ -8,22 +7,19 @@ The connection to the SQLite database is established via [sqlite3.connect()](htt
 - [db.py](myapp/db.py#L10-L13)
 
 ### Data Tables
-
 The database schema is created before we store or retrieve any data.
 
 - [schema.sql](myapp/schema.sql)
 
-
 ### CRUD Operations
+The CRUD operations are implemented in several places of the application. Follow the links below for details.
 
-- [Create](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L31-L34)
-- [Read](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L20)
-- [Update](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L47-L50)
-- [Delete](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L59-L61)
-
+- [Create](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L33-L37)
+- [Read](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L20-L22)
+- [Update](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L55-L58)
+- [Delete](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L67-L69)
 
 # Instructions
-
 The application was written in **Python 3.6** with the microframework [Flask](http://flask.pocoo.org). We recommend [Miniconda](https://conda.io/miniconda.html) package management system to create the development environment.
 
 - Create Environment
