@@ -5,9 +5,9 @@ The application's directory is called [crudy](crudy), and the project layout loo
 ```
 ├── crudy
 │   ├── db.py
-│   ├── __init__.py
 │   ├── main.py
 │   ├── schema.sql
+│   ├── __init__.py
 │   └── templates
 │       ├── create.html
 │       ├── index.html
