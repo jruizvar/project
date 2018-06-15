@@ -1,11 +1,11 @@
 from flask import Blueprint, redirect, render_template, url_for
 from flask_wtf import FlaskForm
-from myapp.db import get_db
+from crudy.db import get_db
 from wtforms import FloatField, StringField, SubmitField
 from wtforms.validators import DataRequired
 
 
-bp = Blueprint('menu', __name__)
+bp = Blueprint('app', __name__)
 
 
 class MyForm(FlaskForm):

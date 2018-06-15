@@ -8,7 +8,7 @@ def create_app():
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'myapp.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'crudy.sqlite'),
     )
     bootstrap = Bootstrap(app)
 
@@ -20,8 +20,8 @@ def create_app():
     from . import db
     db.init_app(app)
 
-    from . import menu
-    app.register_blueprint(menu.bp)
+    from . import main
+    app.register_blueprint(main.bp)
     app.add_url_rule('/', endpoint='index')
 
     return app

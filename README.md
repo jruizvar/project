@@ -42,7 +42,7 @@ cd project
 
 - Environment Setup
 ```
-export FLASK_APP=myapp
+export FLASK_APP=crudy
 export FLASK_ENV=development
 ```
 
