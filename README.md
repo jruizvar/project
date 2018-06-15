@@ -14,10 +14,10 @@ The database schema is created before we store or retrieve any data.
 ### CRUD Operations
 The CRUD operations are implemented in several places of the application. Follow the links below for details.
 
-- [Create](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L32)
-- [Read](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L21)
-- [Update](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L49)
-- [Delete](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L61)
+- [Create](https://github.com/jruizvar/project/blob/master/crudy/main.py#L32)
+- [Read](https://github.com/jruizvar/project/blob/master/crudy/main.py#L21)
+- [Update](https://github.com/jruizvar/project/blob/master/crudy/main.py#L49)
+- [Delete](https://github.com/jruizvar/project/blob/master/crudy/main.py#L61)
 
 # Instructions
 The application was written in **Python 3.6** with the microframework [Flask](http://flask.pocoo.org). We recommend [Miniconda](https://conda.io/miniconda.html) package management system to create the development environment.
