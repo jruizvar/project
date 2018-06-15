@@ -17,10 +17,10 @@ def create_app():
     except OSError:
         pass
 
-    from . import db
-    db.init_app(app)
+    from crudy.db import init_app
+    init_app(app)
 
-    from .main import bp
+    from crudy.main import bp
     app.register_blueprint(bp)
     app.add_url_rule('/', endpoint='index')
 
