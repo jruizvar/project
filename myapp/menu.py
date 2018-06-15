@@ -27,11 +27,10 @@ def index():
 def create():
     form = MyForm()
     if form.validate_on_submit():
-        item = form.item.data
-        price = float(form.price.raw_data[0])
         db = get_db()
         db.execute(
-            'INSERT INTO prices (item, price) VALUES (?, ?)', (item, price)
+            'INSERT INTO prices (item, price) VALUES (?, ?)',
+            (form.item.data, form.price.data)
         )
         db.commit()
         return redirect(url_for('index'))
@@ -44,8 +43,7 @@ def update(id):
     it = db.execute(
       'SELECT * FROM prices WHERE id = ?', (id,)
     ).fetchone()
-    data = {'item': it['item'], 'price': it['price']}
-    form = MyForm(data=data)
+    form = MyForm(data={'item': it['item'], 'price': it['price']})
     if form.validate_on_submit():
         db.execute(
             'UPDATE prices SET item = ?, price = ? WHERE id = ?',
