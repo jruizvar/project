@@ -5,7 +5,7 @@ from wtforms import FloatField, StringField, SubmitField
 from wtforms.validators import DataRequired
 
 
-bp = Blueprint('app', __name__)
+bp = Blueprint('bp', __name__)
 
 
 class MyForm(FlaskForm):
