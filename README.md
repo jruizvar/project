@@ -3,7 +3,7 @@ This web application executes the [CRUD](https://en.wikipedia.org/wiki/Create,_r
 
 ### Project Layout 
 The application's directory is called [crudy](crudy), and the layout looks like this:
-
+```
 ├── crudy
 │   ├── db.py
 │   ├── __init__.py
@@ -14,6 +14,7 @@ The application's directory is called [crudy](crudy), and the layout looks like 
 │       ├── index.html
 │       └── update.html
 └── README.md
+```
 
 ### Connect to the Database
 The connection to the SQLite database is established via [sqlite3.connect()](https://docs.python.org/3/library/sqlite3.html#sqlite3.connect). 
