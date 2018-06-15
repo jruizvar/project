@@ -1,6 +1,20 @@
 # Project Description
 This web application executes the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations on a relational database. The application uses the [SQLite](https://sqlite.org/about.html) library to implement a transactional SQL database engine. SQLite is convenient because it doesn't require setting up a separate database server and it is built-in to **Python**.
 
+### Project Layout 
+The application's directory is called [crudy](crudy), and the layout looks like this:
+
+├── crudy
+│   ├── db.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── schema.sql
+│   └── templates
+│       ├── create.html
+│       ├── index.html
+│       └── update.html
+└── README.md
+
 ### Connect to the Database
 The connection to the SQLite database is established via [sqlite3.connect()](https://docs.python.org/3/library/sqlite3.html#sqlite3.connect). 
 
