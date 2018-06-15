@@ -1,8 +1,7 @@
 # Project Description
 This web application executes the [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations on a relational database. The application uses the [SQLite](https://sqlite.org/about.html) library to implement a transactional SQL database engine. SQLite is convenient because it doesn't require setting up a separate database server and it is built-in to **Python**.
 
-### Project Layout 
-The application's directory is called [crudy](crudy), and the layout looks like this:
+The application's directory is called [crudy](crudy), and the project layout looks like this:
 ```
 ├── crudy
 │   ├── db.py
@@ -29,10 +28,11 @@ The database schema is created before we store or retrieve any data.
 ### CRUD Operations
 The CRUD operations are implemented in several places of the application. Follow the links below for details.
 
-- [Create](https://github.com/jruizvar/project/blob/master/crudy/main.py#L32)
-- [Read](https://github.com/jruizvar/project/blob/master/crudy/main.py#L21)
-- [Update](https://github.com/jruizvar/project/blob/master/crudy/main.py#L49)
-- [Delete](https://github.com/jruizvar/project/blob/master/crudy/main.py#L61)
+- [main.py](crudy/main.py)
+  - [Create](https://github.com/jruizvar/project/blob/master/crudy/main.py#L32)
+  - [Read](https://github.com/jruizvar/project/blob/master/crudy/main.py#L21)
+  - [Update](https://github.com/jruizvar/project/blob/master/crudy/main.py#L49)
+  - [Delete](https://github.com/jruizvar/project/blob/master/crudy/main.py#L61)
 
 # Instructions
 The application was written in **Python 3.6** with the microframework [Flask](http://flask.pocoo.org). We recommend [Miniconda](https://conda.io/miniconda.html) package management system to create the development environment.
