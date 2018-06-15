@@ -24,34 +24,38 @@ The database schema is created before we store or retrieve any data.
 
 # Instructions
 
-The application was written in **Python 3.6** with the microframework [Flask](http://flask.pocoo.org).
+The application was written in **Python 3.6** with the microframework [Flask](http://flask.pocoo.org). We recommend [Miniconda](https://conda.io/miniconda.html) package management system to create the development environment.
 
-### Install Dependencies
+- Create Environment
+```
+conda create -n flask python=3
+source activate flask
+```
+
+- Install Dependencies
 
 ```
 pip install flask flask-bootstrap flask-wtf
 ``` 
 
-### Download Project
+- Download Project
 ```
 git clone https://github.com/jruizvar/project.git
 cd project
 ```
 
-### Environment Setup 
-
+- Environment Setup
 ```
 export FLASK_APP=myapp
 export FLASK_ENV=development
 ```
 
-### Initialize Database
-
+- Initialize Database
 ```
 flask init-db
 ```
 
-### Execute Application
+- Execute Application
 ```
 flask run
 ```
