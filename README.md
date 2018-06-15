@@ -4,20 +4,20 @@ This web application executes the [CRUD](https://en.wikipedia.org/wiki/Create,_r
 ### Connect to the Database
 The connection to the SQLite database is established via [sqlite3.connect()](https://docs.python.org/3/library/sqlite3.html#sqlite3.connect). 
 
-- [db.py](myapp/db.py#L10-L13)
+- [db.py](crudy/db.py#L10-L13)
 
 ### Data Tables
 The database schema is created before we store or retrieve any data.
 
-- [schema.sql](myapp/schema.sql)
+- [schema.sql](crudy/schema.sql)
 
 ### CRUD Operations
 The CRUD operations are implemented in several places of the application. Follow the links below for details.
 
-- [Create](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L32)
-- [Read](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L21)
-- [Update](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L49)
-- [Delete](https://github.com/jruizvar/project/blob/master/myapp/menu.py#L61)
+- [Create](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L32)
+- [Read](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L21)
+- [Update](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L49)
+- [Delete](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L61)
 
 # Instructions
 The application was written in **Python 3.6** with the microframework [Flask](http://flask.pocoo.org). We recommend [Miniconda](https://conda.io/miniconda.html) package management system to create the development environment.
