@@ -47,6 +47,7 @@ def create(id=None):
                 )
             db.commit()
             return redirect(url_for('.read'))
+
         db.execute('INSERT INTO orders DEFAULT VALUES')
         ids = db.execute('SELECT id FROM orders').fetchall()
         order_id = ids[-1]['id']
