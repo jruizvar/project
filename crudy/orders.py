@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, url_for
 from flask_wtf import FlaskForm
 from crudy.db import get_db
-from wtforms import SelectField, SubmitField
+from wtforms import IntegerField, SelectField, SubmitField
 from wtforms.validators import NumberRange
 
 
@@ -30,7 +30,7 @@ def read(id=None):
 
 
 @bp.route('/create', methods=('GET', 'POST'))
-@bp.route('/create/<int:id>', methods=('GET', 'POST'))
+@bp.route('<int:id>/create', methods=('GET', 'POST'))
 def create(id=None):
     db = get_db()
     itens = db.execute(
@@ -55,7 +55,7 @@ def create(id=None):
                     (id, int(form.item.data))
                 )
             db.commit()
-            return redirect(url_for('.read'))
+            return redirect(url_for('.read', id=id))
 
         db.execute('INSERT INTO orders DEFAULT VALUES')
         ids = db.execute('SELECT id FROM orders').fetchall()
@@ -66,5 +66,16 @@ def create(id=None):
                 (order_id, int(form.item.data))
             )
         db.commit()
-        return redirect(url_for('.read'))
+        return redirect(url_for('.read', id=order_id))
     return render_template('orders/create.html', form=form)
+
+
+@bp.route('/<int:id>/delete', methods=('POST',))
+def delete(id):
+    db = get_db()
+    db.execute(
+        'DELETE FROM middle '
+        'WHERE order_id = ? ', (id,)
+    )
+    db.commit()
+    return redirect(url_for('.read', id=id))
