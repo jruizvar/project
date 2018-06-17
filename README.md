@@ -5,13 +5,20 @@ The application's directory is called [crudy](crudy), and the project layout loo
 ```
 ├── crudy
 │   ├── db.py
-│   ├── main.py
+│   ├── menu.py
+│   ├── orders.py
 │   ├── schema.sql
 │   ├── __init__.py
 │   └── templates
 │       ├── create.html
 │       ├── index.html
+│       ├── menu
+│       │   └── view.html
+│       ├── orders
+│       │   └── view.html
 │       └── update.html
+├── instance
+│   └── crudy.sqlite
 └── README.md
 ```
 
@@ -28,11 +35,11 @@ The database schema is created before we store or retrieve any data.
 ### CRUD Operations
 The CRUD operations are implemented in several places of the application. Follow the links below for details.
 
-- [main.py](crudy/main.py)
-  - [create](https://github.com/jruizvar/project/blob/master/crudy/main.py#L32)
-  - [read](https://github.com/jruizvar/project/blob/master/crudy/main.py#L21)
-  - [update](https://github.com/jruizvar/project/blob/master/crudy/main.py#L49)
-  - [delete](https://github.com/jruizvar/project/blob/master/crudy/main.py#L61)
+- [menu.py](crudy/menu.py)
+  - [create](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L32)
+  - [read](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L21)
+  - [update](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L49)
+  - [delete](https://github.com/jruizvar/project/blob/master/crudy/menu.py#L61)
 
 # Instructions
 The application was written in **Python 3.6** with the microframework [Flask](http://flask.pocoo.org). We recommend [Miniconda](https://conda.io/miniconda.html) package management system to create the development environment.
@@ -65,6 +72,7 @@ export FLASK_ENV=development
 ```
 flask init-db
 ```
+The directory `instance` containing the file `crudy.sqlite` is created.
 
 - Execute Application
 ```

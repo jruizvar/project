@@ -1,0 +1,21 @@
+<h1>Restaurant Menu</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
+  {% for it in itens %}
+    <tr>
+      <td><a href="{{ url_for('.update', id=it['id']) }}">
+	  {{ it['id'] }}</a></td>
+      <td>{{ it['name']  }}</td>
+      <td>{{ it['price'] }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<hr>
+<p><a href="{{ url_for('.create') }}">New Item</a></p>
+<p><a href="{{ url_for('index') }}">Home</a></p>

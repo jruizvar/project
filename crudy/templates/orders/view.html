@@ -1,0 +1,30 @@
+<h1>Restaurant Orders</h1>
+
+<table>
+  <tr>
+    <th>Order</th>
+    <th>Product</th>
+    <th>Price</th>
+  </tr>
+  {% for it in itens %}
+    <tr>
+      {% if id %}
+        <td>{{ it['order_id']  }}</td>
+      {% else %}
+      <td><a href="{{ url_for('.read', id=it['order_id']) }}">
+	  {{ it['order_id'] }}</a></td>
+      {% endif %}
+      <td>{{ it['name']  }}</td>
+      <td>{{ it['price']  }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% if id %}
+  <p><a href="{{ url_for('.create', id=id) }}">Add Item</a></p>
+  <hr>
+  <p><a href="{{ url_for('.read') }}">All Orders</a></p>
+{% else %}
+  <p><a href="{{ url_for('.create') }}">New Order</a></p>
+  <hr>
+  <p><a href="{{ url_for('index') }}">Home</a></p>
+{% endif %}

@@ -1,9 +1,9 @@
-<h1> Item Editor </h1>
+<h1>Editor</h1>
 
 {% import "bootstrap/wtf.html" as wtf %}
 {{ wtf.quick_form(form) }}
 <hr>
 <form action="{{ url_for('.delete', id=id) }}" method="post">
-  <input class="danger" type="submit" value="Delete Item"
+  <input class="danger" type="submit" value="Delete"
    onclick="return confirm('Are you sure?');">
 </form>

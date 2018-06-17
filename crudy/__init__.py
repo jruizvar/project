@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 
 
@@ -17,11 +17,15 @@ def create_app():
     except OSError:
         pass
 
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
     from crudy.db import init_app
     init_app(app)
 
-    from crudy.main import bp
-    app.register_blueprint(bp)
-    app.add_url_rule('/', endpoint='index')
+    from crudy import menu, orders
+    app.register_blueprint(menu.bp)
+    app.register_blueprint(orders.bp)
 
     return app

@@ -5,35 +5,35 @@ from wtforms import FloatField, StringField, SubmitField
 from wtforms.validators import DataRequired
 
 
-bp = Blueprint('bp', __name__)
+bp = Blueprint('menu', __name__, url_prefix='/menu')
 
 
-class MyForm(FlaskForm):
-    item = StringField('Item', validators=[DataRequired()])
+class ProductForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
     price = FloatField('Price', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
 @bp.route('/')
-def index():
+def read():
     db = get_db()
     itens = db.execute(
-        'SELECT * FROM prices'
+        'SELECT * FROM products'
     )
-    return render_template('index.html', itens=itens)
+    return render_template('menu/view.html', itens=itens)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
 def create():
-    form = MyForm()
+    form = ProductForm()
     if form.validate_on_submit():
         db = get_db()
         db.execute(
-            'INSERT INTO prices (item, price) VALUES (?, ?)',
-            (form.item.data, form.price.data)
+            'INSERT INTO products (name, price) VALUES (?, ?)',
+            (form.name.data, form.price.data)
         )
         db.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('.read'))
     return render_template('create.html', form=form)
 
 
@@ -41,16 +41,16 @@ def create():
 def update(id):
     db = get_db()
     it = db.execute(
-      'SELECT * FROM prices WHERE id = ?', (id,)
+        'SELECT * FROM products WHERE id = ?', (id,)
     ).fetchone()
-    form = MyForm(data={'item': it['item'], 'price': it['price']})
+    form = ProductForm(data={'name': it['name'], 'price': it['price']})
     if form.validate_on_submit():
         db.execute(
-            'UPDATE prices SET item = ?, price = ? WHERE id = ?',
-            (form.item.data, form.price.data, id)
+            'UPDATE products SET name = ?, price = ? WHERE id = ?',
+            (form.name.data, form.price.data, id)
         )
         db.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('.read'))
     return render_template('update.html', form=form, id=id)
 
 
@@ -58,7 +58,7 @@ def update(id):
 def delete(id):
     db = get_db()
     db.execute(
-        'DELETE FROM prices WHERE id = ?', (id,)
+        'DELETE FROM products WHERE id = ?', (id,)
     )
     db.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('.read'))
