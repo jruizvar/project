@@ -10,15 +10,14 @@ The application's directory is called [crudy](crudy), and the project layout loo
 │   ├── schema.sql
 │   ├── __init__.py
 │   └── templates
-│       ├── create.html
 │       ├── index.html
 │       ├── menu
+│       │   ├── create.html
+│       │   ├── update.html
 │       │   └── view.html
-│       ├── orders
-│       │   └── view.html
-│       └── update.html
-├── instance
-│   └── crudy.sqlite
+│       └── orders
+│           ├── create.html
+│           └── view.html
 └── README.md
 ```
 

@@ -34,7 +34,7 @@ def create():
         )
         db.commit()
         return redirect(url_for('.read'))
-    return render_template('create.html', form=form)
+    return render_template('menu/create.html', form=form)
 
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
@@ -51,7 +51,7 @@ def update(id):
         )
         db.commit()
         return redirect(url_for('.read'))
-    return render_template('update.html', form=form, id=id)
+    return render_template('menu/update.html', form=form, id=id)
 
 
 @bp.route('/<int:id>/delete', methods=('POST',))
