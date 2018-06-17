@@ -10,7 +10,7 @@ bp = Blueprint('orders', __name__, url_prefix='/orders')
 
 @bp.route('/')
 def read():
-    itens = get_db().execute(
+    query = get_db().execute(
         'SELECT m.order_id, '
         'COUNT(p.name) AS count_names, '
         'printf("%.2f", SUM(p.price)) AS sum_prices '
@@ -19,27 +19,27 @@ def read():
         'GROUP BY m.order_id '
         'ORDER BY m.order_id'
     )
-    return render_template('orders/view.html', itens=itens)
+    return render_template('orders/view.html', query=query)
 
 
 @bp.route('/<int:id>')
 def update(id):
-    itens = get_db().execute(
+    query = get_db().execute(
         'SELECT m.order_id, p.name, p.price '
         'FROM middle AS m, products AS p '
         'WHERE m.order_id = ? AND m.prod_id = p.id', (id,)
     )
-    return render_template('orders/update.html', itens=itens, id=id)
+    return render_template('orders/update.html', query=query, id=id)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
 @bp.route('<int:id>/create', methods=('GET', 'POST'))
 def create(id=None):
     db = get_db()
-    itens = db.execute(
+    query = db.execute(
         'SELECT id, name FROM products'
     ).fetchall()
-    choices = [(str(it['id']), it['name']) for it in itens]
+    choices = [(str(q['id']), q['name']) for q in query]
 
     message = 'Amount must be between 1 and 10.'
     validators = [NumberRange(min=1, max=10, message=message)]

@@ -17,10 +17,10 @@ class ProductForm(FlaskForm):
 @bp.route('/')
 def read():
     db = get_db()
-    itens = db.execute(
+    query = db.execute(
         'SELECT * FROM products'
     )
-    return render_template('menu/view.html', itens=itens)
+    return render_template('menu/view.html', query=query)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -40,10 +40,10 @@ def create():
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 def update(id):
     db = get_db()
-    it = db.execute(
+    q = db.execute(
         'SELECT * FROM products WHERE id = ?', (id,)
     ).fetchone()
-    form = ProductForm(data={'name': it['name'], 'price': it['price']})
+    form = ProductForm(data={'name': q['name'], 'price': q['price']})
     if form.validate_on_submit():
         db.execute(
             'UPDATE products SET name = ?, price = ? WHERE id = ?',

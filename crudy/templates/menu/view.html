@@ -9,16 +9,19 @@
     <th>Name</th>
     <th>Price</th>
   </tr>
-  {% for it in itens %}
+  {% for q in query %}
     <tr>
-      <td><a href="{{ url_for('.update', id=it['id']) }}">
-	  {{ it['id'] }}</a></td>
-      <td>{{ it['name']  }}</td>
-      <td>{{ it['price'] }}</td>
+      <td><a href="{{ url_for('.update', id=q['id']) }}">
+	  {{ q['id'] }}</a></td>
+      <td>{{ q['name']  }}</td>
+      <td>{{ q['price'] }}</td>
     </tr>
   {% endfor %}
 </table>
 
-<p><a href="{{ url_for('.create') }}">New Item</a></p>
+<form action="{{ url_for('.create') }}">
+  <input type="submit" value="Add Item">
+</form>
+
 <hr>
 <p><a href="{{ url_for('index') }}">Home</a></p>

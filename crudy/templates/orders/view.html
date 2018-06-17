@@ -9,12 +9,12 @@
     <th>Itens</th>
     <th>Total</th>
   </tr>
-  {% for it in itens %}
+  {% for q in query %}
     <tr>
-    <td><a href="{{ url_for('.update', id=it['order_id']) }}">
-        {{ it['order_id'] }}</a></td>
-    <td>{{ it['count_names'] }}</td>
-    <th>{{ it['sum_prices']  }}</th>
+    <td><a href="{{ url_for('.update', id=q['order_id']) }}">
+        {{ q['order_id'] }}</a></td>
+    <td>{{ q['count_names'] }}</td>
+    <th>{{ q['sum_prices']  }}</th>
     </tr>
   {% endfor %}
 </table>

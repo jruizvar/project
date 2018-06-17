@@ -8,10 +8,10 @@
     <th>Product</th>
     <th>Price</th>
   </tr>
-  {% for it in itens %}
+  {% for q in query %}
     <tr>
-      <td>{{ it['name']  }}</td>
-      <td>{{ it['price']  }}</td>
+      <td>{{ q['name']  }}</td>
+      <td>{{ q['price']  }}</td>
     </tr>
   {% endfor %}
 </table>
