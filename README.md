@@ -9,6 +9,8 @@ The application's directory is called [crudy](crudy), and the project layout loo
 │   ├── orders.py
 │   ├── schema.sql
 │   ├── __init__.py
+│   ├── static
+│   │   └── style.css
 │   └── templates
 │       ├── index.html
 │       ├── menu

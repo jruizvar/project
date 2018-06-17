@@ -1,3 +1,6 @@
+<!doctype html>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 <h1>Restaurant Menu</h1>
 
 <table>
@@ -16,6 +19,6 @@
   {% endfor %}
 </table>
 
-<hr>
 <p><a href="{{ url_for('.create') }}">New Item</a></p>
+<hr>
 <p><a href="{{ url_for('index') }}">Home</a></p>

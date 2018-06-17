@@ -49,7 +49,7 @@ def create(id=None):
         amount = IntegerField('Amount', validators=validators)
         submit = SubmitField('Submit')
 
-    form = OrderForm()
+    form = OrderForm(data={'amount': 1})
     if form.validate_on_submit():
         if id:
             for _ in range(form.amount.data):
