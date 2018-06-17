@@ -1,7 +1,20 @@
 <!doctype html>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title> Crudy - Home </title>
+</head>
 
-<h1> Restaurant Manager </h1>
+<body>
 
+<form action="{{ url_for('index')}}">
+  <button class="btn"><i class="fa fa-home"></i> </button>
+</form>
+<p><h1>Restaurant Manager</h1></p>
+ 
 <p><a href="{{ url_for('.menu.read')}}">Menu</a></p>
 <p><a href="{{ url_for('.orders.read')}}">Orders</a></p>
+
+</body>
+</html>

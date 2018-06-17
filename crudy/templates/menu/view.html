@@ -1,8 +1,18 @@
 <!doctype html>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title> Crudy - Restaurant Menu </title>
+</head>
 
-<h1>Restaurant Menu</h1>
+<body>
 
+<form action="{{ url_for('index')}}">
+  <button class="btn"><i class="fa fa-home"></i> </button>
+</form>
+<p><h1>Restaurant Menu</h1></p>
+ 
 <table>
   <tr>
     <th>ID</th>
@@ -20,8 +30,8 @@
 </table>
 
 <form action="{{ url_for('.create') }}">
-  <input type="submit" value="Add Item">
+  <p><input type="submit" value="Add Item"></p>
 </form>
 
-<hr>
-<p><a href="{{ url_for('index') }}">Home</a></p>
+</body>
+</html>
