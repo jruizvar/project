@@ -1,0 +1,25 @@
+<h1>Order {{ id }}</h1>
+
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Price</th>
+  </tr>
+  {% for it in itens %}
+    <tr>
+      <td>{{ it['name']  }}</td>
+      <td>{{ it['price']  }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<form action="{{ url_for('.create', id=id) }}" style="display:inline">
+  <input type="submit" value="Add Item">
+</form>
+<form action="{{ url_for('.delete', id=id) }}" method="post" style="display:inline">
+  <input class="danger" type="submit" value="Clear List"
+   onclick="return confirm('Are you sure?');">
+</form>
+
+<hr>
+<p><a href="{{ url_for('.read') }}">All Orders</a></p>

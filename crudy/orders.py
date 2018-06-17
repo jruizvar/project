@@ -9,24 +9,27 @@ bp = Blueprint('orders', __name__, url_prefix='/orders')
 
 
 @bp.route('/')
-@bp.route('/<int:id>')
-def read(id=None):
-    db = get_db()
-    if id:
-        itens = db.execute(
-            'SELECT m.order_id, p.name, p.price '
-            'FROM middle AS m, products AS p '
-            'WHERE m.order_id = ? AND m.prod_id = p.id', (id,)
-        )
-        return render_template('orders/view.html', itens=itens, id=id)
-
-    itens = db.execute(
-        'SELECT m.order_id, p.name, p.price '
+def read():
+    itens = get_db().execute(
+        'SELECT m.order_id, '
+        'COUNT(p.name) AS count_names, '
+        'printf("%.2f", SUM(p.price)) AS sum_prices '
         'FROM middle AS m, products AS p '
         'WHERE m.prod_id = p.id '
+        'GROUP BY m.order_id '
         'ORDER BY m.order_id'
     )
     return render_template('orders/view.html', itens=itens)
+
+
+@bp.route('/<int:id>')
+def update(id):
+    itens = get_db().execute(
+        'SELECT m.order_id, p.name, p.price '
+        'FROM middle AS m, products AS p '
+        'WHERE m.order_id = ? AND m.prod_id = p.id', (id,)
+    )
+    return render_template('orders/update.html', itens=itens, id=id)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -55,7 +58,7 @@ def create(id=None):
                     (id, int(form.item.data))
                 )
             db.commit()
-            return redirect(url_for('.read', id=id))
+            return redirect(url_for('.update', id=id))
 
         db.execute('INSERT INTO orders DEFAULT VALUES')
         ids = db.execute('SELECT id FROM orders').fetchall()
@@ -66,7 +69,7 @@ def create(id=None):
                 (order_id, int(form.item.data))
             )
         db.commit()
-        return redirect(url_for('.read', id=order_id))
+        return redirect(url_for('.update', id=order_id))
     return render_template('orders/create.html', form=form)
 
 
@@ -78,4 +81,4 @@ def delete(id):
         'WHERE order_id = ? ', (id,)
     )
     db.commit()
-    return redirect(url_for('.read', id=id))
+    return redirect(url_for('.update', id=id))
