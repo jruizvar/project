@@ -45,8 +45,8 @@ def create(id=None):
     validators = [NumberRange(min=1, max=10, message=message)]
 
     class OrderForm(FlaskForm):
-        item = SelectField('Item', choices=choices)
         amount = IntegerField('Amount', validators=validators)
+        item = SelectField('Item', choices=choices)
         submit = SubmitField('Submit')
 
     form = OrderForm(data={'amount': 1})
