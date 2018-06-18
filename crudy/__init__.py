@@ -24,8 +24,9 @@ def create_app():
     from crudy.db import init_app
     init_app(app)
 
-    from crudy import menu, orders
+    from crudy import menu, orders, report
     app.register_blueprint(menu.bp)
     app.register_blueprint(orders.bp)
+    app.register_blueprint(report.bp)
 
     return app

@@ -1,6 +1,6 @@
+from crudy.db import get_db
 from flask import Blueprint, redirect, render_template, url_for
 from flask_wtf import FlaskForm
-from crudy.db import get_db
 from wtforms import IntegerField, SelectField, SubmitField
 from wtforms.validators import NumberRange
 
@@ -47,7 +47,7 @@ def create(id=None):
     class OrderForm(FlaskForm):
         amount = IntegerField('Amount', validators=validators)
         item = SelectField('Item', choices=choices)
-        submit = SubmitField('Submit')
+        submit = SubmitField('\u254B')
 
     form = OrderForm(data={'amount': 1})
     if form.validate_on_submit():

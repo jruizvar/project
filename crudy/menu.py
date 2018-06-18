@@ -1,6 +1,6 @@
+from crudy.db import get_db
 from flask import Blueprint, redirect, render_template, url_for
 from flask_wtf import FlaskForm
-from crudy.db import get_db
 from wtforms import FloatField, StringField, SubmitField
 from wtforms.validators import DataRequired
 
@@ -11,7 +11,7 @@ bp = Blueprint('menu', __name__, url_prefix='/menu')
 class ProductForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     price = FloatField('Price', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('\u254B')
 
 
 @bp.route('/')
