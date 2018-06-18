@@ -3,7 +3,7 @@
 <head>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title> Crudy - Orders Report </title>
+  <title> Crudy - Summary </title>
 </head>
 
 <body>
@@ -11,9 +11,9 @@
 <form action="{{ url_for('index')}}">
   <button class="btn"><i class="fa fa-home"></i> </button>
 </form>
-<p><h1>Orders Report</h1></p>
+<p><h1> Summary </h1></p>
 
-Hello, World
+<div> {{ df|safe }} </div>
 
 </body>
 </html>

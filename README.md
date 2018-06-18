@@ -55,7 +55,7 @@ source activate flask
 - Install Dependencies
 
 ```
-pip install flask flask-bootstrap flask-wtf
+pip install flask flask-bootstrap flask-wtf pandas
 ``` 
 
 - Download Project
