@@ -4,6 +4,7 @@ from flask import Blueprint, render_template
 
 import pandas as pd
 
+
 bp = Blueprint('report', __name__, url_prefix='/report')
 
 
@@ -23,5 +24,4 @@ def read():
             dd[k].append(v)
     df = pd.DataFrame.from_dict(dd)
     df = df.to_html(index=False, justify='center')
-    print(df)
     return render_template('report/view.html', df=df)
