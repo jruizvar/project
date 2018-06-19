@@ -15,17 +15,17 @@
  
 <table>
   <tr>
-    <th>ID</th>
+    <th></th>
     <th>Product</th>
     <th>Price</th>
   </tr>
   {% for q in query %}
     <tr>
       {% if pid %}
-      <td>{{ pid }}</td>
+      <td></td>
       {% else %}
       <td><a href="{{ url_for('.update', oid=oid, pid=q['pid']) }}">
-	  {{ q['pid'] }}</a></td>
+	  &#x25E6</a></td>
       {% endif %}
       <td>{{ q['name']  }}</td>
       <th align="right">{{ q['price'] }}</th>

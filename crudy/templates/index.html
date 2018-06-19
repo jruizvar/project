@@ -13,9 +13,15 @@
 </form>
 <p><h1>Restaurant Manager</h1></p>
  
-<p><a href="{{ url_for('.menu.read')}}">Menu</a></p>
-<p><a href="{{ url_for('.orders.read')}}">Orders</a></p>
-<p><a href="{{ url_for('.report.read')}}">Report</a></p>
+<nav>
+  <ul>
+    <li><a href="{{ url_for('.menu.read')}}">Menu</a></li>
+    <li><a href="{{ url_for('.orders.read')}}">Orders</a></li>
+  </ul>
+</nav>
+
+<p><h2>Summary</h2></p>
+<div> {{ df }} </div>
 
 </body>
 </html>

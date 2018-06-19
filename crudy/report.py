@@ -1,14 +1,10 @@
 from crudy.db import get_db
-from flask import Blueprint, Markup, render_template
+from flask import Markup
 
 import pandas as pd
 
 
-bp = Blueprint('report', __name__, url_prefix='/report')
-
-
-@bp.route('/')
-def read():
+def summary():
     db = get_db()
     query = """ SELECT m.oid, p.name, p.price, o.created
                 FROM middle AS m, products AS p, orders AS o
@@ -16,5 +12,11 @@ def read():
                 ORDER BY m.oid
             """
     df = pd.read_sql(query, db)
-    df = df.to_html(index=False, justify='center')
-    return render_template('report/view.html', df=Markup(df))
+
+    s1 = df.groupby('oid')['name'].apply(list)
+    s2 = df.groupby('oid')['price'].sum()
+    s3 = df.groupby('oid')['created'].first()
+
+    df = pd.concat([s1, s2, s3], axis=1)
+    df = df.to_html(justify='center')
+    return Markup(df)

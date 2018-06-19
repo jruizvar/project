@@ -1,5 +1,5 @@
 import os
-
+from crudy.report import summary
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 
@@ -19,14 +19,14 @@ def create_app():
 
     @app.route('/')
     def index():
-        return render_template('index.html')
+        df = summary()
+        return render_template('index.html', df=df)
 
     from crudy.db import init_app
     init_app(app)
 
-    from crudy import menu, orders, report
+    from crudy import menu, orders
     app.register_blueprint(menu.bp)
     app.register_blueprint(orders.bp)
-    app.register_blueprint(report.bp)
 
     return app
