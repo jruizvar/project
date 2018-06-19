@@ -23,9 +23,19 @@ def read():
 
 
 @bp.route('/<int:oid>')
-def update(oid):
+@bp.route('/<int:oid>/<int:pid>')
+def update(oid, pid=None):
+    if pid:
+        query = get_db().execute(
+            'SELECT m.pid, p.name, p.price '
+            'FROM middle AS m, products AS p '
+            'WHERE m.oid = ? AND m.pid = p.id AND p.id = ?', (oid, pid)
+        )
+        return render_template('orders/update.html',
+                               query=query, oid=oid, pid=pid)
+
     query = get_db().execute(
-        'SELECT m.oid, p.name, p.price '
+        'SELECT m.pid, p.name, p.price '
         'FROM middle AS m, products AS p '
         'WHERE m.oid = ? AND m.pid = p.id', (oid,)
     )
@@ -73,12 +83,12 @@ def create(oid=None):
     return render_template('orders/create.html', form=form)
 
 
-@bp.route('/<int:oid>/delete', methods=('POST',))
-def delete(oid):
+@bp.route('/<int:oid>/<int:pid>/delete', methods=('POST',))
+def delete(oid, pid):
     db = get_db()
     db.execute(
         'DELETE FROM middle '
-        'WHERE oid = ? ', (oid,)
+        'WHERE oid = ? AND pid = ?', (oid, pid)
     )
     db.commit()
     return redirect(url_for('.update', oid=oid))

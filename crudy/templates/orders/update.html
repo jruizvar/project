@@ -15,24 +15,34 @@
  
 <table>
   <tr>
+    <th>ID</th>
     <th>Product</th>
     <th>Price</th>
   </tr>
   {% for q in query %}
     <tr>
+      {% if pid %}
+      <td>{{ pid }}</td>
+      {% else %}
+      <td><a href="{{ url_for('.update', oid=oid, pid=q['pid']) }}">
+	  {{ q['pid'] }}</a></td>
+      {% endif %}
       <td>{{ q['name']  }}</td>
       <th>{{ q['price'] }}</th>
     </tr>
   {% endfor %}
 </table>
 
-<form action="{{ url_for('.create', oid=oid) }}" style="display:inline">
+{% if pid %}
+  <form action="{{ url_for('.delete', oid=oid, pid=pid) }}" method="post">
+    <input class="danger" type="submit" value="Clear"
+     onclick="return confirm('Are you sure?');">
+  </form>
+{% else %}
+<form action="{{ url_for('.create', oid=oid) }}">
   <input type="submit" value="&#x254B">
 </form>
-<form action="{{ url_for('.delete', oid=oid) }}" method="post" style="display:inline">
-  <input class="danger" type="submit" value="Clear List"
-   onclick="return confirm('Are you sure?');">
-</form>
+{% endif %}
 
 <hr>
 <form action="{{ url_for('.read') }}">
