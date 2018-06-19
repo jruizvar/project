@@ -1,6 +1,5 @@
-from collections import defaultdict
 from crudy.db import get_db
-from flask import Blueprint, render_template
+from flask import Blueprint, Markup, render_template
 
 import pandas as pd
 
@@ -18,4 +17,4 @@ def read():
             """
     df = pd.read_sql(query, db)
     df = df.to_html(index=False, justify='center')
-    return render_template('report/view.html', df=df)
+    return render_template('report/view.html', df=Markup(df))
