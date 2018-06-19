@@ -11,7 +11,7 @@ bp = Blueprint('menu', __name__, url_prefix='/menu')
 class ProductForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     price = FloatField('Price', validators=[DataRequired()])
-    submit = SubmitField('\u254B')
+    submit = SubmitField('\u2611')
 
 
 @bp.route('/')

@@ -25,7 +25,7 @@
       <td></td>
       {% else %}
       <td><a href="{{ url_for('.update', oid=oid, pid=q['pid']) }}">
-	  &#x25E6</a></td>
+	  &#x23F9</a></td>
       {% endif %}
       <td>{{ q['name']  }}</td>
       <th align="right">{{ q['price'] }}</th>
@@ -40,7 +40,7 @@
   </form>
 {% else %}
 <form action="{{ url_for('.create', oid=oid) }}">
-  <input type="submit" value="&#x254B">
+  <input type="submit" value="&#x2611">
 </form>
 {% endif %}
 

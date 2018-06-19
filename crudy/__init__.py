@@ -19,8 +19,8 @@ def create_app():
 
     @app.route('/')
     def index():
-        df = summary()
-        return render_template('index.html', df=df)
+        no, tot, df = summary()
+        return render_template('index.html', no=no, tot=tot, df=df)
 
     from crudy.db import init_app
     init_app(app)

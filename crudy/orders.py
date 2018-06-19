@@ -56,7 +56,7 @@ def create(oid=None):
     class OrderForm(FlaskForm):
         amount = IntegerField('Amount', validators=validators)
         item = SelectField('Item', choices=choices)
-        submit = SubmitField('\u254B')
+        submit = SubmitField('\u2611')
 
     form = OrderForm(data={'amount': 1})
     if form.validate_on_submit():
