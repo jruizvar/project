@@ -14,7 +14,7 @@ def read():
         'SELECT m.oid, o.created, '
         'printf("%.2f", SUM(p.price)) AS sum_prices '
         'FROM middle AS m, products AS p, orders AS o '
-        'WHERE m.pid = p.id '
+        'WHERE m.pid = p.id AND m.oid = o.id '
         'GROUP BY m.oid '
         'ORDER BY m.oid'
     )
