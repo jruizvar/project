@@ -16,15 +16,14 @@
 <table>
   <tr>
     <th>Order</th>
-    <th>Items</th>
+    <th>Created</th>
     <th>Total</th>
   </tr>
   {% for q in query %}
     <tr>
-    <td><a href="{{ url_for('.update', oid=q['oid']) }}">
-        {{ q['oid'] }}</a></td>
-    <td>{{ q['count_names'] }}</td>
-    <th>{{ q['sum_prices']  }}</th>
+    <td><a href="{{ url_for('.update', oid=q['oid']) }}">{{ q['oid'] }}</a></td>
+    <td>{{ q['created']  }}</td>
+    <th align="right">{{ q['sum_prices'] }}</th>
     </tr>
   {% endfor %}
 </table>

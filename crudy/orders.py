@@ -11,10 +11,9 @@ bp = Blueprint('orders', __name__, url_prefix='/orders')
 @bp.route('/')
 def read():
     query = get_db().execute(
-        'SELECT m.oid, '
-        'COUNT(p.name) AS count_names, '
+        'SELECT m.oid, o.created, '
         'printf("%.2f", SUM(p.price)) AS sum_prices '
-        'FROM middle AS m, products AS p '
+        'FROM middle AS m, products AS p, orders AS o '
         'WHERE m.pid = p.id '
         'GROUP BY m.oid '
         'ORDER BY m.oid'

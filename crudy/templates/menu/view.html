@@ -24,7 +24,7 @@
       <td><a href="{{ url_for('.update', id=q['id']) }}">
 	  {{ q['id'] }}</a></td>
       <td>{{ q['name']  }}</td>
-      <th>{{ q['price'] }}</th>
+      <th align="right">{{ q['price'] }}</th>
     </tr>
   {% endfor %}
 </table>
