@@ -14,8 +14,8 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE middle (
-  order_id INTEGER NOT NULL,
-  prod_id INTEGER NOT NULL,
-  FOREIGN KEY (order_id) REFERENCES orders (id),
-  FOREIGN KEY (prod_id) REFERENCES products (id)
+  oid INTEGER NOT NULL,
+  pid INTEGER NOT NULL,
+  FOREIGN KEY (oid) REFERENCES orders (id),
+  FOREIGN KEY (pid) REFERENCES products (id)
 );

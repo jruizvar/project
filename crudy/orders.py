@@ -11,30 +11,30 @@ bp = Blueprint('orders', __name__, url_prefix='/orders')
 @bp.route('/')
 def read():
     query = get_db().execute(
-        'SELECT m.order_id, '
+        'SELECT m.oid, '
         'COUNT(p.name) AS count_names, '
         'printf("%.2f", SUM(p.price)) AS sum_prices '
         'FROM middle AS m, products AS p '
-        'WHERE m.prod_id = p.id '
-        'GROUP BY m.order_id '
-        'ORDER BY m.order_id'
+        'WHERE m.pid = p.id '
+        'GROUP BY m.oid '
+        'ORDER BY m.oid'
     )
     return render_template('orders/view.html', query=query)
 
 
-@bp.route('/<int:id>')
-def update(id):
+@bp.route('/<int:oid>')
+def update(oid):
     query = get_db().execute(
-        'SELECT m.order_id, p.name, p.price '
+        'SELECT m.oid, p.name, p.price '
         'FROM middle AS m, products AS p '
-        'WHERE m.order_id = ? AND m.prod_id = p.id', (id,)
+        'WHERE m.oid = ? AND m.pid = p.id', (oid,)
     )
-    return render_template('orders/update.html', query=query, id=id)
+    return render_template('orders/update.html', query=query, oid=oid)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
-@bp.route('<int:id>/create', methods=('GET', 'POST'))
-def create(id=None):
+@bp.route('<int:oid>/create', methods=('GET', 'POST'))
+def create(oid=None):
     db = get_db()
     query = db.execute(
         'SELECT id, name FROM products'
@@ -51,34 +51,34 @@ def create(id=None):
 
     form = OrderForm(data={'amount': 1})
     if form.validate_on_submit():
-        if id:
+        if oid:
             for _ in range(form.amount.data):
                 db.execute(
                     'INSERT INTO middle VALUES (?, ?)',
-                    (id, int(form.item.data))
+                    (oid, int(form.item.data))
                 )
             db.commit()
-            return redirect(url_for('.update', id=id))
+            return redirect(url_for('.update', oid=oid))
 
         db.execute('INSERT INTO orders DEFAULT VALUES')
         ids = db.execute('SELECT id FROM orders').fetchall()
-        order_id = ids[-1]['id']
+        oid = ids[-1]['id']
         for _ in range(form.amount.data):
             db.execute(
                 'INSERT INTO middle VALUES (?, ?)',
-                (order_id, int(form.item.data))
+                (oid, int(form.item.data))
             )
         db.commit()
-        return redirect(url_for('.update', id=order_id))
+        return redirect(url_for('.update', oid=oid))
     return render_template('orders/create.html', form=form)
 
 
-@bp.route('/<int:id>/delete', methods=('POST',))
-def delete(id):
+@bp.route('/<int:oid>/delete', methods=('POST',))
+def delete(oid):
     db = get_db()
     db.execute(
         'DELETE FROM middle '
-        'WHERE order_id = ? ', (id,)
+        'WHERE oid = ? ', (oid,)
     )
     db.commit()
-    return redirect(url_for('.update', id=id))
+    return redirect(url_for('.update', oid=oid))

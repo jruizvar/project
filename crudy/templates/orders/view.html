@@ -21,8 +21,8 @@
   </tr>
   {% for q in query %}
     <tr>
-    <td><a href="{{ url_for('.update', id=q['order_id']) }}">
-        {{ q['order_id'] }}</a></td>
+    <td><a href="{{ url_for('.update', oid=q['oid']) }}">
+        {{ q['oid'] }}</a></td>
     <td>{{ q['count_names'] }}</td>
     <th>{{ q['sum_prices']  }}</th>
     </tr>
