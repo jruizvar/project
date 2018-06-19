@@ -18,5 +18,7 @@ def summary():
     s3 = df.groupby('oid')['created'].first()
 
     df = pd.concat([s1, s2, s3], axis=1)
+    df.columns = ['Products', 'Total', 'Created']
+    df.index.rename('Order ID', inplace=True)
     df = df.to_html(justify='center')
     return Markup(df)
