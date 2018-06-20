@@ -5,6 +5,10 @@ import pandas as pd
 
 
 def summary():
+    """ Calculate the number of orders (no),
+        the total revenue (tot),
+        and the denormalized database (df)
+    """
     db = get_db()
     query = """ SELECT m.oid, p.name, o.created, p.price
                 FROM middle AS m, products AS p, orders AS o
@@ -18,10 +22,10 @@ def summary():
     s3 = df['price'].sum()
 
     df = pd.concat([s1, s2, s3], axis=1)
-
     df.columns = ['Products', 'Created', 'Total']
     df.index.rename('Order ID', inplace=True)
 
+    no = df.shape[0]
     tot = df['Total'].sum()
 
-    return df.shape[0], tot, Markup(df.to_html(justify='center'))
+    return no, tot, Markup(df.to_html(justify='center'))
