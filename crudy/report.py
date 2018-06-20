@@ -26,9 +26,9 @@ def summary():
     df.columns = ['Products', 'Created', 'Total']
     df.index.rename('Order ID', inplace=True)
 
-    no = df.shape[0]
+    norders = df.shape[0]
     tot = df['Total'].sum()
-    return no, tot, df
+    return norders, tot, df
 
 
 def write_mongo(df):

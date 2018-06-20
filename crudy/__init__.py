@@ -20,7 +20,7 @@ def create_app():
 
     @app.route('/', methods=('GET', 'POST'))
     def index():
-        no, tot, df = summary()
+        norders, tot, df = summary()
         html = (
             df.style
             .set_properties(**{
@@ -29,10 +29,11 @@ def create_app():
                 })
             .render()
         )
-        if no:
+        if norders:
             write_mongo(df)
 
-        return render_template('index.html', no=no, tot=tot, df=Markup(html))
+        return render_template('index.html',
+                               norders=norders, tot=tot, df=Markup(html))
 
     from crudy.db import init_app
     init_app(app)
