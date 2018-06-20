@@ -10,7 +10,8 @@ bp = Blueprint('orders', __name__, url_prefix='/orders')
 
 @bp.route('/')
 def read():
-    query = get_db().execute(
+    db = get_db()
+    query = db.execute(
         'SELECT m.oid, o.created, '
         'printf("%.2f", SUM(p.price)) AS sum_prices '
         'FROM middle AS m, products AS p, orders AS o '
@@ -24,8 +25,9 @@ def read():
 @bp.route('/<int:oid>')
 @bp.route('/<int:oid>/<int:pid>')
 def update(oid, pid=None):
+    db = get_db()
     if pid:
-        query = get_db().execute(
+        query = db.execute(
             'SELECT m.pid, p.name, p.price '
             'FROM middle AS m, products AS p '
             'WHERE m.oid = ? AND m.pid = p.id AND p.id = ?', (oid, pid)
@@ -33,7 +35,7 @@ def update(oid, pid=None):
         return render_template('orders/update.html',
                                query=query, oid=oid, pid=pid)
 
-    query = get_db().execute(
+    query = db.execute(
         'SELECT m.pid, p.name, p.price '
         'FROM middle AS m, products AS p '
         'WHERE m.oid = ? AND m.pid = p.id', (oid,)

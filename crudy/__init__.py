@@ -1,7 +1,8 @@
-import os
 from crudy.report import summary
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
+
+import os
 
 
 def create_app():

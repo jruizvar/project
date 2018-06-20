@@ -11,11 +11,11 @@ def summary():
                 WHERE m.pid = p.id AND m.oid = o.id
                 ORDER BY m.oid
             """
-    df = pd.read_sql(query, db)
+    df = pd.read_sql(query, db).groupby('oid')
 
-    s1 = df.groupby('oid')['name'].apply(list)
-    s2 = df.groupby('oid')['created'].first()
-    s3 = df.groupby('oid')['price'].sum()
+    s1 = df['name'].apply(list)
+    s2 = df['created'].first()
+    s3 = df['price'].sum()
 
     df = pd.concat([s1, s2, s3], axis=1)
 
