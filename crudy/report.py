@@ -28,4 +28,13 @@ def summary():
     no = df.shape[0]
     tot = df['Total'].sum()
 
-    return no, tot, Markup(df.to_html(justify='center'))
+    html = (
+        df.style
+        .set_properties(**{
+            'background-color': 'lightgray',
+            'border-color': 'white',
+            })
+        .render()
+    )
+
+    return no, tot, Markup(html)
