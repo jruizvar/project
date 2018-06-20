@@ -18,7 +18,7 @@ def create_app():
     except OSError:
         pass
 
-    @app.route('/')
+    @app.route('/', methods=('GET', 'POST'))
     def index():
         no, tot, df = summary()
         html = (
@@ -29,7 +29,9 @@ def create_app():
                 })
             .render()
         )
-        write_mongo(df)
+        if no:
+            write_mongo(df)
+
         return render_template('index.html', no=no, tot=tot, df=Markup(html))
 
     from crudy.db import init_app

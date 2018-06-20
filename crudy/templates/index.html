@@ -26,8 +26,15 @@
   <li><h4>R$ {{ tot }}</h4></li>
 </ul>
 
-<p></p>
-<div> {{ df }} </div>
+{% if no %}
+  <p></p>
+  <div> {{ df }} </div>
+  <hr>
+  <form action="{{ url_for('index') }}" method="post">
+    <input type="submit" value="Save"
+     onclick="return confirm('Save MongoDB?');">
+  </form>
+{% endif %}
 
 </body>
 </html>
