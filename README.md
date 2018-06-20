@@ -78,7 +78,7 @@ flask init-db
 The directory `instance` containing the file `crudy.sqlite` is created.
 Run the [MongoDB](http://api.mongodb.com/python/current/tutorial.html) service in another terminal.
 ```
-mkdir instance/data/db
+mkdir instance/mongodata
 mongod --dbpath instance/mongodata
 ```
 
