@@ -32,9 +32,6 @@ def summary():
 
 
 def write_mongo(df):
-    """ By default, mongo stores its data
-        at /var/lib/mongodb
-    """
     client = MongoClient()
     db = client.crudy_database
     collection = db.crudy_collection
