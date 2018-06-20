@@ -52,8 +52,8 @@ def create(oid=None):
     ).fetchall()
     choices = [(str(q['id']), q['name']) for q in query]
 
-    message = 'Amount must be between 1 and 10.'
-    validators = [NumberRange(min=1, max=10, message=message)]
+    message = 'Amount must be between 1 and 100.'
+    validators = [NumberRange(min=1, max=100, message=message)]
 
     class OrderForm(FlaskForm):
         amount = IntegerField('Amount', validators=validators)
