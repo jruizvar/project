@@ -6,10 +6,6 @@ import pymongo
 
 
 def summary():
-    """ Calculate the number of orders (no),
-        the total revenue (tot),
-        and the denormalized dataframe (df).
-    """
     db = get_db()
     query = """ SELECT m.oid, p.name, o.created, p.price
                 FROM middle AS m, products AS p, orders AS o
