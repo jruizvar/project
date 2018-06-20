@@ -25,7 +25,7 @@
       <td></td>
       {% else %}
       <td><a href="{{ url_for('.update', oid=oid, pid=q['pid']) }}">
-	  &#x23F9</a></td>
+	  &#x26D4</a></td>
       {% endif %}
       <td>{{ q['name']  }}</td>
       <th align="right">{{ q['price'] }}</th>
@@ -35,7 +35,7 @@
 
 {% if pid %}
   <form action="{{ url_for('.delete', oid=oid, pid=pid) }}" method="post">
-    <input class="danger" type="submit" value="Clear"
+    <input class="danger" type="submit" value="Clear List"
      onclick="return confirm('Are you sure?');">
   </form>
 {% else %}

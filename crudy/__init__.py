@@ -1,5 +1,5 @@
 from crudy.report import summary, write_mongo
-from flask import Flask, Markup, render_template
+from flask import Flask, flash, Markup, redirect, render_template, url_for
 from flask_bootstrap import Bootstrap
 
 import os
@@ -18,8 +18,9 @@ def create_app():
     except OSError:
         pass
 
-    @app.route('/', methods=('GET', 'POST'))
-    def index():
+    @app.route('/')
+    @app.route('/<int:save>', methods=('GET', 'POST'))
+    def index(save=None):
         norders, tot, df = summary()
         html = (
             df.style
@@ -29,8 +30,9 @@ def create_app():
                 })
             .render()
         )
-        if norders:
+        if save:
             write_mongo(df)
+            flash('Your data was successfully saved.')
 
         return render_template('index.html',
                                norders=norders,

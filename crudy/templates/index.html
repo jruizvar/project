@@ -30,11 +30,21 @@
   <p></p>
   <div> {{ df }} </div>
   <hr>
-  <form action="{{ url_for('index') }}" method="post">
+  <form action="{{ url_for('index', save=1) }}" method="post">
     <input type="submit" value="Save"
      onclick="return confirm('Save MongoDB?');">
   </form>
 {% endif %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 
 </body>
 </html>
