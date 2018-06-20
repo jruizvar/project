@@ -33,7 +33,9 @@ def create_app():
             write_mongo(df)
 
         return render_template('index.html',
-                               norders=norders, tot=tot, df=Markup(html))
+                               norders=norders,
+                               tot=tot,
+                               df=Markup(html))
 
     from crudy.db import init_app
     init_app(app)
