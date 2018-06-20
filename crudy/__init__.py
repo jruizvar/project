@@ -1,5 +1,5 @@
-from crudy.report import summary
-from flask import Flask, render_template
+from crudy.report import summary, write_mongo
+from flask import Flask, Markup, render_template
 from flask_bootstrap import Bootstrap
 
 import os
@@ -21,7 +21,16 @@ def create_app():
     @app.route('/')
     def index():
         no, tot, df = summary()
-        return render_template('index.html', no=no, tot=tot, df=df)
+        html = (
+            df.style
+            .set_properties(**{
+                'background-color': 'lightgray',
+                'border-color': 'white',
+                })
+            .render()
+        )
+        write_mongo(df)
+        return render_template('index.html', no=no, tot=tot, df=Markup(html))
 
     from crudy.db import init_app
     init_app(app)

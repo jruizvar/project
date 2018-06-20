@@ -1,13 +1,14 @@
 from crudy.db import get_db
-from flask import Markup
+from pymongo import MongoClient
 
 import pandas as pd
+import pymongo
 
 
 def summary():
     """ Calculate the number of orders (no),
         the total revenue (tot),
-        and the denormalized database (df)
+        and the denormalized dataframe (df).
     """
     db = get_db()
     query = """ SELECT m.oid, p.name, o.created, p.price
@@ -27,14 +28,14 @@ def summary():
 
     no = df.shape[0]
     tot = df['Total'].sum()
+    return no, tot, df
 
-    html = (
-        df.style
-        .set_properties(**{
-            'background-color': 'lightgray',
-            'border-color': 'white',
-            })
-        .render()
-    )
 
-    return no, tot, Markup(html)
+def write_mongo(df):
+    """ By default, mongo stores its data
+        at /var/lib/mongodb
+    """
+    client = MongoClient()
+    db = client.crudy_database
+    collection = db.crudy_collection
+    db.invoices.insert_many(df.to_dict(orient='records'))

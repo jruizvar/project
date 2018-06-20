@@ -49,14 +49,14 @@ The application was written in **Python 3.6** with the microframework [Flask](ht
 
 - Create Environment
 ```
-conda create -n flask python=3
-source activate flask
+conda create -n crudy python=3 mongodb
+source activate crudy
 ```
 
 - Install Dependencies
 
 ```
-pip install flask flask-bootstrap flask-wtf pandas
+pip install flask flask-bootstrap flask-wtf pandas pymongo
 ``` 
 
 - Download Project
@@ -71,11 +71,16 @@ export FLASK_APP=crudy
 export FLASK_ENV=development
 ```
 
-- Initialize Database
+- Initialize Databases
 ```
 flask init-db
 ```
 The directory `instance` containing the file `crudy.sqlite` is created.
+Run the [MongoDB](http://api.mongodb.com/python/current/tutorial.html) service in another terminal.
+```
+mkdir instance/data/db
+mongod --dbpath instance/mongodata
+```
 
 - Execute Application
 ```
