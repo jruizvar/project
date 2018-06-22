@@ -1,8 +1,6 @@
 from crudy.db import get_db
-from pymongo import MongoClient
 
 import pandas as pd
-import pymongo
 
 
 def summary():
@@ -25,10 +23,3 @@ def summary():
     norders = df.shape[0]
     tot = df['Total'].sum()
     return norders, tot, df
-
-
-def write_mongo(df):
-    client = MongoClient()
-    db = client.crudy_database
-    collection = db.crudy_collection
-    db.invoices.insert_many(df.to_dict(orient='records'))
