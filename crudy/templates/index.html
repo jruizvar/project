@@ -30,7 +30,7 @@
   <p></p>
   <div> {{ df }} </div>
   <hr>
-  <form action="{{ url_for('index', save=1) }}" method="post">
+  <form action="{{ url_for('save') }}" method="post">
     <input type="submit" value="Save"
      onclick="return confirm('Save MongoDB?');">
   </form>
