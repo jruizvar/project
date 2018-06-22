@@ -8,7 +8,7 @@
 
 <body>
 
-<form action="{{ url_for('index')}}">
+<form action="{{ url_for('main.index')}}">
   <button class="btn"><i class="fa fa-home"></i> </button>
 </form>
 <p><h1>Restaurant Orders</h1></p>
@@ -21,14 +21,15 @@
   </tr>
   {% for q in query %}
     <tr>
-    <td><a href="{{ url_for('.update', oid=q['oid']) }}">{{ q['oid'] }}</a></td>
-    <td>{{ q['created']  }}</td>
+    <td><a href="{{ url_for('orders.update', oid=q['oid']) }}">
+	{{ q['oid'] }}</a></td>
+    <td>{{ q['created'] }}</td>
     <th align="right">{{ q['sum_prices'] }}</th>
     </tr>
   {% endfor %}
 </table>
 
-<form action="{{ url_for('.create') }}">
+<form action="{{ url_for('orders.create') }}">
   <p><input type="submit" value="&#x2611"></p>
 </form>
 

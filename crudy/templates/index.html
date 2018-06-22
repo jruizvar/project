@@ -8,15 +8,15 @@
 
 <body>
 
-<form action="{{ url_for('index')}}">
+<form action="{{ url_for('main.index')}}">
   <button class="btn"><i class="fa fa-home"></i> </button>
 </form>
 <p><h1>Restaurant Manager</h1></p>
  
 <nav>
   <ul>
-    <li><a href="{{ url_for('.menu.read')}}">Menu</a></li>
-    <li><a href="{{ url_for('.orders.read')}}">Orders</a></li>
+    <li><a href="{{ url_for('menu.read')}}">Menu</a></li>
+    <li><a href="{{ url_for('orders.read')}}">Orders</a></li>
   </ul>
 </nav>
 
@@ -30,7 +30,7 @@
   <p></p>
   <div> {{ df }} </div>
   <hr>
-  <form action="{{ url_for('save') }}" method="post">
+  <form action="{{ url_for('main.save') }}" method="post">
     <input type="submit" value="Save"
      onclick="return confirm('Save MongoDB?');">
   </form>
