@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}New Order{% endblock %}</h1>
+    <h1>
+      {% block title %}
+        {% if oid %}
+	  New Item in Order {{ oid }}
+        {% else %}
+	  New Order
+        {% endif %}
+      {% endblock %}
+    </h1>
 {% endblock %}
 
 {% block content %}

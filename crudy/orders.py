@@ -71,7 +71,7 @@ def create(oid=None):
             )
         db.commit()
         return redirect(url_for('orders.update', oid=oid))
-    return render_template('orders/create.html', form=form)
+    return render_template('orders/create.html', oid=oid, form=form)
 
 
 @bp.route('/<int:oid>/<int:pid>/delete', methods=('POST',))
