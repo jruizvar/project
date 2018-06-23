@@ -23,7 +23,7 @@ def read():
 
 
 @bp.route('/<int:oid>', methods=('GET', 'POST'))
-def update(oid, pid=None):
+def update(oid):
     db = get_db()
     query = db.execute(
         'SELECT m.pid, p.name, p.price '
