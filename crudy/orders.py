@@ -22,19 +22,9 @@ def read():
     return render_template('orders/view.html', query=query)
 
 
-@bp.route('/<int:oid>')
-@bp.route('/<int:oid>/<int:pid>')
+@bp.route('/<int:oid>', methods=('GET', 'POST'))
 def update(oid, pid=None):
     db = get_db()
-    if pid:
-        query = db.execute(
-            'SELECT m.pid, p.name, p.price '
-            'FROM middle AS m, products AS p '
-            'WHERE m.oid = ? AND m.pid = p.id AND p.id = ?', (oid, pid)
-        )
-        return render_template('orders/update.html',
-                               query=query, oid=oid, pid=pid)
-
     query = db.execute(
         'SELECT m.pid, p.name, p.price '
         'FROM middle AS m, products AS p '
