@@ -1,53 +1,45 @@
-<!doctype html>
-<html>
-<head>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title> Crudy - Order {{ oid }} </title>
-</head>
+{% extends 'base.html' %}
 
-<body>
+{% block header %}
+  <h1>{% block title %}Order {{ oid }}{% endblock %}</h1>
+{% endblock %}
 
-<form action="{{ url_for('main.index')}}">
-  <button class="btn"><i class="fa fa-home"></i> </button>
-</form>
-<p><h1>Order {{ oid }}</h1></p>
- 
-<table>
-  <tr>
-    <th></th>
-    <th>Product</th>
-    <th>Price</th>
-  </tr>
-  {% for q in query %}
+{% block content %}
+
+  <table>
     <tr>
-      {% if pid %}
-      <td></td>
-      {% else %}
-      <td><a href="{{ url_for('orders.update', oid=oid, pid=q['pid']) }}">
-	  &#x26D4</a></td>
-      {% endif %}
-      <td>{{ q['name']  }}</td>
-      <th align="right">{{ q['price'] }}</th>
+      <th></th>
+      <th>Product</th>
+      <th>Price</th>
     </tr>
-  {% endfor %}
-</table>
-
-{% if pid %}
-  <form action="{{ url_for('orders.delete', oid=oid, pid=pid) }}" method="post">
-    <input class="danger" type="submit" value="Clear List"
-     onclick="return confirm('Are you sure?');">
+    {% for q in query %}
+      <tr>
+        {% if pid %}
+        <td></td>
+        {% else %}
+        <td><a href="{{ url_for('orders.update', oid=oid, pid=q['pid']) }}">
+  	  &#x26D4</a></td>
+        {% endif %}
+        <td>{{ q['name'] }}</td>
+        <th align="right">{{ q['price'] }}</th>
+      </tr>
+    {% endfor %}
+  </table>
+  
+  {% if pid %}
+    <form action="{{ url_for('orders.delete', oid=oid, pid=pid) }}" method="post">
+      <input class="danger" type="submit" value="Clear List"
+       onclick="return confirm('Are you sure?');">
+    </form>
+  {% else %}
+  <form action="{{ url_for('orders.create', oid=oid) }}">
+    <input type="submit" value="&#x2611">
   </form>
-{% else %}
-<form action="{{ url_for('orders.create', oid=oid) }}">
-  <input type="submit" value="&#x2611">
-</form>
-{% endif %}
+  {% endif %}
+  
+  <hr>
+  <form action="{{ url_for('orders.read') }}">
+    <input type="submit" value="All Orders">
+  </form>
 
-<hr>
-<form action="{{ url_for('orders.read') }}">
-  <input type="submit" value="All Orders">
-</form>
-
-</body>
-</html>
+{% endblock %}

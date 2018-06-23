@@ -33,7 +33,7 @@ def create():
             (form.name.data, form.price.data)
         )
         db.commit()
-        return redirect(url_for('.read'))
+        return redirect(url_for('menu.read'))
     return render_template('menu/create.html', form=form)
 
 
@@ -50,7 +50,7 @@ def update(id):
             (form.name.data, form.price.data, id)
         )
         db.commit()
-        return redirect(url_for('.read'))
+        return redirect(url_for('menu.read'))
     return render_template('menu/update.html', form=form, id=id)
 
 
@@ -61,4 +61,4 @@ def delete(id):
         'DELETE FROM products WHERE id = ?', (id,)
     )
     db.commit()
-    return redirect(url_for('.read'))
+    return redirect(url_for('menu.read'))

@@ -13,6 +13,7 @@ The application's directory is called [crudy](crudy), and the project layout loo
 │   ├── static
 │   │   └── style.css
 │   └── templates
+│       ├── base.html
 │       ├── index.html
 │       ├── menu
 │       │   ├── create.html

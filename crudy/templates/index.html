@@ -1,50 +1,32 @@
-<!doctype html>
-<html>
-<head>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title> Crudy - Home </title>
-</head>
+{% extends 'base.html' %}
 
-<body>
+{% block header %}
+  <h1>{% block title %}Restaurant Manager{% endblock %}</h1>
+{% endblock %}
 
-<form action="{{ url_for('main.index')}}">
-  <button class="btn"><i class="fa fa-home"></i> </button>
-</form>
-<p><h1>Restaurant Manager</h1></p>
- 
-<nav>
-  <ul>
-    <li><a href="{{ url_for('menu.read')}}">Menu</a></li>
-    <li><a href="{{ url_for('orders.read')}}">Orders</a></li>
-  </ul>
-</nav>
+{% block content %}
 
-<p><h2>Summary</h2></p>
-<ul>
-  <li><h4>Orders: {{ norders }}</h4></li>
-  <li><h4>R$ {{ tot }}</h4></li>
-</ul>
-
-{% if norders %}
-  <p></p>
-  <div> {{ df }} </div>
-  <hr>
-  <form action="{{ url_for('main.save') }}" method="post">
-    <input type="submit" value="Save"
-     onclick="return confirm('Save MongoDB?');">
-  </form>
-{% endif %}
-
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('menu.read')}}">Menu</a></li>
+      <li><a href="{{ url_for('orders.read')}}">Orders</a></li>
     </ul>
+  </nav>
+  
+  <p><h2>Summary</h2></p>
+  <ul>
+    <li><h4>Orders: {{ norders }}</h4></li>
+    <li><h4>R$ {{ tot }}</h4></li>
+  </ul>
+  
+  {% if norders %}
+    <p></p>
+    <div> {{ df }} </div>
+    <hr>
+    <form action="{{ url_for('main.save') }}" method="post">
+      <input type="submit" value="Save"
+       onclick="return confirm('Save MongoDB?');">
+    </form>
   {% endif %}
-{% endwith %}
 
-</body>
-</html>
+{% endblock %}

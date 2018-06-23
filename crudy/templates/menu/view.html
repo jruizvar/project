@@ -1,37 +1,29 @@
-<!doctype html>
-<html>
-<head>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title> Crudy - Restaurant Menu </title>
-</head>
+{% extends 'base.html' %}
 
-<body>
+{% block header %}
+  <h1>{% block title %}Restaurant Menu{% endblock %}</h1>
+{% endblock %}
 
-<form action="{{ url_for('main.index')}}">
-  <button class="btn"><i class="fa fa-home"></i> </button>
-</form>
-<p><h1>Restaurant Menu</h1></p>
+{% block content %}
  
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Price</th>
-  </tr>
-  {% for q in query %}
+  <table>
     <tr>
-      <td><a href="{{ url_for('menu.update', id=q['id']) }}">
-	  {{ q['id'] }}</a></td>
-      <td>{{ q['name']  }}</td>
-      <th align="right">{{ q['price'] }}</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
     </tr>
-  {% endfor %}
-</table>
+    {% for q in query %}
+      <tr>
+        <td><a href="{{ url_for('menu.update', id=q['id']) }}">
+  	  {{ q['id'] }}</a></td>
+        <td>{{ q['name'] }}</td>
+        <th align="right">{{ q['price'] }}</th>
+      </tr>
+    {% endfor %}
+  </table>
+  
+  <form action="{{ url_for('menu.create') }}">
+    <p><input type="submit" value="&#x2611"></p>
+  </form>
 
-<form action="{{ url_for('menu.create') }}">
-  <p><input type="submit" value="&#x2611"></p>
-</form>
-
-</body>
-</html>
+{% endblock %}

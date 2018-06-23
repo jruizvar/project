@@ -1,19 +1,12 @@
-<!doctype html>
-<html>
-<head>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title> Crudy - New Item </title>
-</head>
+{% extends 'base.html' %}
 
-<body>
-<form action="{{ url_for('main.index')}}">
-  <button class="btn"><i class="fa fa-home"></i> </button>
-</form>
-<p><h1>New Item</h1></p>
+{% block header %}
+  <h1>{% block title %}New Item{% endblock %}</h1>
+{% endblock %}
 
-{% import "bootstrap/wtf.html" as wtf %}
-{{ wtf.quick_form(form) }}
+{% block content %}
 
-</body>
-</html>
+  {% import "bootstrap/wtf.html" as wtf %}
+  {{ wtf.quick_form(form) }}
+
+{% endblock %}

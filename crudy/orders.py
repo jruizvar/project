@@ -69,7 +69,7 @@ def create(oid=None):
                     (oid, int(form.item.data))
                 )
             db.commit()
-            return redirect(url_for('.update', oid=oid))
+            return redirect(url_for('orders.update', oid=oid))
 
         db.execute('INSERT INTO orders DEFAULT VALUES')
         ids = db.execute('SELECT id FROM orders').fetchall()
@@ -80,7 +80,7 @@ def create(oid=None):
                 (oid, int(form.item.data))
             )
         db.commit()
-        return redirect(url_for('.update', oid=oid))
+        return redirect(url_for('orders.update', oid=oid))
     return render_template('orders/create.html', form=form)
 
 
@@ -92,4 +92,4 @@ def delete(oid, pid):
         'WHERE oid = ? AND pid = ?', (oid, pid)
     )
     db.commit()
-    return redirect(url_for('.update', oid=oid))
+    return redirect(url_for('orders.update', oid=oid))

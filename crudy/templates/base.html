@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+
+  <head>
+    <title>{% block title %}{% endblock %} - Crudy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  
+  <body>
+    
+    <section class="content">
+      <header>
+        <form action="{{ url_for('main.index') }}" style="margin: 0; padding: 5px;">
+          <button class="btn"><i class="fa fa-home"></i> </button>
+        </form>
+        {% block header %}{% endblock %}
+      </header>
+      {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+      {% block content %}{% endblock %}
+    </section>
+  
+  </body>
+
+</html>
