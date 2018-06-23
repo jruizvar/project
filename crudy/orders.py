@@ -22,7 +22,7 @@ def read():
     return render_template('orders/view.html', query=query)
 
 
-@bp.route('/<int:oid>', methods=('GET', 'POST'))
+@bp.route('/<int:oid>')
 def update(oid):
     db = get_db()
     query = db.execute(
