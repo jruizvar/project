@@ -89,3 +89,5 @@ flask run
 ```
 
 By default, the application starts running on http://localhost:5000/
+
+![](doc/crudy.gif)
