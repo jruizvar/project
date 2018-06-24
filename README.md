@@ -23,6 +23,8 @@ The application's directory is called [crudy](crudy), and the project layout loo
 │           ├── create.html
 │           ├── update.html
 │           └── view.html
+├── doc
+│   └── crudy.gif
 └── README.md
 ```
 
