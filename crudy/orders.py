@@ -14,7 +14,7 @@ def read():
     query = db.execute(
         'SELECT m.oid, o.created, '
         'printf("%.2f", SUM(p.price)) AS sum_prices '
-        'FROM middle AS m, products AS p, orders AS o '
+        'FROM prod_order AS m, products AS p, orders AS o '
         'WHERE m.pid = p.id AND m.oid = o.id '
         'GROUP BY m.oid '
         'ORDER BY m.oid'
@@ -27,7 +27,7 @@ def update(oid):
     db = get_db()
     query = db.execute(
         'SELECT m.pid, p.name, p.price '
-        'FROM middle AS m, products AS p '
+        'FROM prod_order AS m, products AS p '
         'WHERE m.oid = ? AND m.pid = p.id', (oid,)
     )
     return render_template('orders/update.html', query=query, oid=oid)
@@ -55,7 +55,7 @@ def create(oid=None):
         if oid:
             for _ in range(form.amount.data):
                 db.execute(
-                    'INSERT INTO middle VALUES (?, ?)',
+                    'INSERT INTO prod_order VALUES (?, ?)',
                     (oid, int(form.item.data))
                 )
             db.commit()
@@ -66,7 +66,7 @@ def create(oid=None):
         oid = ids[-1]['id']
         for _ in range(form.amount.data):
             db.execute(
-                'INSERT INTO middle VALUES (?, ?)',
+                'INSERT INTO prod_order VALUES (?, ?)',
                 (oid, int(form.item.data))
             )
         db.commit()
@@ -78,7 +78,7 @@ def create(oid=None):
 def delete(oid, pid):
     db = get_db()
     db.execute(
-        'DELETE FROM middle '
+        'DELETE FROM prod_order '
         'WHERE oid = ? AND pid = ?', (oid, pid)
     )
     db.commit()

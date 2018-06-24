@@ -12,7 +12,7 @@ bp = Blueprint('main', __name__)
 def summary():
     db = get_db()
     query = """ SELECT m.oid, p.name, o.created, p.price
-                FROM middle AS m, products AS p, orders AS o
+                FROM prod_order AS m, products AS p, orders AS o
                 WHERE m.pid = p.id AND m.oid = o.id
                 ORDER BY m.oid
             """
