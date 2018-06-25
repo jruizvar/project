@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Questions{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% import "bootstrap/wtf.html" as wtf %}
+<form class="form form-horizontal" method="post" role="form">
+  {{ form.hidden_tag() }}
+
+  {{ wtf.form_field(form.order) }}<br>
+  
+        <th><b>Como você se sente em relação ao atendimento?</b><br></th>
+		
+  {{ wtf.form_field(form.service) }}<br>
+          <th><b>Como você se sente em relação a comida?</b><br></th>
+		
+  {{ wtf.form_field(form.food) }}<br>
+          <th><b>Como você se sente em relação ao ambiente?</b><br></th>
+		
+  {{ wtf.form_field(form.mood) }}<br>
+          <th><b>Escolha um aperitivo para sua próxima visita!</b><br></th>
+		
+  {{ wtf.form_field(form.courtesy) }}<br>
+  
+  {{ wtf.form_field(form.comment) }}<br>
+
+  <form action="{{ url_for('pool.create') }}">
+    <p><input type="submit" value="&#x2611"></p>
+  </form>
+
+</form>
+
+{% endblock %}
