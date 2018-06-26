@@ -10,9 +10,7 @@
     <ul>
       <li><a href="{{ url_for('menu.read')}}">Menu</a></li>
       <li><a href="{{ url_for('orders.read')}}">Orders</a></li>
-      {% if norders %}
-        <li><a href="{{ url_for('pool.create')}}">Survey</a></li>
-      {% endif %}	
+      <li><a href="{{ url_for('pool.create')}}">Survey</a></li>
     </ul>
   </nav>
   

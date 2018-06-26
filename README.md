@@ -4,33 +4,29 @@ This web application executes the [CRUD](https://en.wikipedia.org/wiki/Create,_r
 The application's directory is called [crudy](crudy), and the project layout looks like this:
 
 ```
-├── crudy
-│   ├── db.py
-│   ├── __init__.py
-│   ├── main.py
-│   ├── menu.py
-│   ├── orders.py
-│   ├── pool.py
-│   ├── schema.sql
-│   ├── static
-│   │   └── style.css
-│   └── templates
-│       ├── base.html
-│       ├── index.html
-│       ├── menu
-│       │   ├── create.html
-│       │   ├── update.html
-│       │   └── view.html
-│       ├── orders
-│       │   ├── create.html
-│       │   ├── update.html
-│       │   └── view.html
-│       └── pool
-│           ├── create.html
-│           └── view.html
-├── doc
-│   └── crudy.gif
-└── README.md
+├── db.py
+├── __init__.py
+├── main.py
+├── menu.py
+├── orders.py
+├── pool.py
+├── schema.sql
+├── static
+│   └── style.css
+└── templates
+    ├── base.html
+    ├── index.html
+    ├── menu
+    │   ├── create.html
+    │   ├── update.html
+    │   └── view.html
+    ├── orders
+    │   ├── create.html
+    │   ├── update.html
+    │   └── view.html
+    └── pool
+        ├── create.html
+        └── view.html
 ```
 
 ### Connect to the Database
