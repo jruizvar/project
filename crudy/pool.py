@@ -56,7 +56,6 @@ def create():
                        'comment': form.comment.data,
                        'date': datetime.datetime.utcnow()}
         db = MongoClient().crudy_database
-        collection = db.pool_collection
         db.pools.insert_one(pool_answer)
         return redirect(url_for('pool.read'))
     return render_template('pool/create.html', form=form)

@@ -52,7 +52,6 @@ def index():
 @bp.route('/save', methods=('POST',))
 def save():
     db = MongoClient().crudy_database
-    collection = db.crudy_collection
     db.invoices.insert_many(session.pop('df'))
     flash('Your data was successfully saved.')
     return redirect(url_for('main.index'))
