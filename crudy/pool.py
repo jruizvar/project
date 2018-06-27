@@ -53,6 +53,7 @@ def create():
                        'service': form.service.data,
                        'food': form.food.data,
                        'mood': form.mood.data,
+                       'courtesy': form.courtesy.data,
                        'comment': form.comment.data,
                        'date': datetime.datetime.utcnow()}
         db = MongoClient().crudy_database
